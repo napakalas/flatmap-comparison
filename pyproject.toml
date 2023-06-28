@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "fcompare"
+version = "1.6.5-b.2"
+description = ""
+authors = ["Yuda Munarko <yuda.munarko@auckland.ac.nz>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+xlsxwriter = "^3.1.2"
+deepdiff = "^6.3.0"
+
+[tool.poetry.scripts]
+fcompare = 'fcompare.__main__:main'
