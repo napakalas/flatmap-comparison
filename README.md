@@ -10,8 +10,10 @@ Instruction
    ```
     ./install.sh
    ```
-   This command executes a script to:* clone and install mapmaker using poetry
+   This command executes a script to:
+   * clone and install mapmaker using poetry
    * install other packages for this application using poetry
+   If you dont want to install mapmaker, just `poetry install` from the main directory.
 4. Compare using shell script
    * syntax
      ```
@@ -32,21 +34,23 @@ Instruction
 5. Compare using python (via poetry)
    * syntax
      ```
-     poetry run python fcompare.py --production <production> \
+     poetry run python fcompare.py \
+        --production <production> \
         --plog <production-log> \
         --staging <staging> \
         --slog <staging-log>
      ```
 
-     * --production : URL or path to flatmap with production SCKAN
-     * --plog       : URL or path to flatmap log with production SCKAN
-     * --staging'   : URL or path to flatmap with staging SCKAN
-     * --slog'      : URL or path to flatmap log with staging SCKAN'
+     * --production : path to flatmap with production SCKAN
+     * --plog       : path to flatmap log with production SCKAN
+     * --staging'   : path to flatmap with staging SCKAN
+     * --slog'      : path to flatmap log with staging SCKAN'
      * --output'    : a file path and name to store comparison results (xlsx, json, csv)
    * example
 
      ```
-        poetry run python fcompare.py --production ../production/human-flatmap_male \
+        poetry run python fcompare.py \
+        --production ../production/human-flatmap_male \
         --plog ../flatmaps/production/male.log \
         --staging ../flatmaps/staging/human-flatmap_male \
         --slog ../flatmaps/staging/male.log --output ../resuls/male.csv

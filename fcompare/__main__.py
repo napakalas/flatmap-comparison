@@ -1,8 +1,6 @@
 #===============================================================================
 
 import argparse
-import subprocess
-from tempfile import TemporaryDirectory, NamedTemporaryFile
 import re
 import logging
 import os
