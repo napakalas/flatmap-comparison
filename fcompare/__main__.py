@@ -14,32 +14,12 @@ import ast
 
 class FlatmapCompare:
     def __init__(self, var_args):
-        self.__tmp_data = None
-        source = var_args.get('source')
-        if source != None:
-            self.create_flatmap(source)
-        else:
-            self.__production = var_args.get('production')
-            self.__plog = var_args.get('plog')
-            self.__staging = var_args.get('staging')
-            self.__slog = var_args.get('slog')
+        self.__production = var_args.get('production')
+        self.__plog = var_args.get('plog')
+        self.__staging = var_args.get('staging')
+        self.__slog = var_args.get('slog')
         self.__report_file = var_args.get('output')
         
-    def create_flatmap(self, source):
-        production = TemporaryDirectory()
-        plog = NamedTemporaryFile()
-        staging = TemporaryDirectory()
-        slog = NamedTemporaryFile()
-
-        command = 'mapmaker --source {} --output {} --log {} --clean-connectivity'
-        subprocess.run(command.format(source, production.name, plog.name))
-        subprocess.run(command.format(source, staging.name, slog.name))
-        self.__tmp_data = [production, plog, staging, slog]
-        self.__production = production.name
-        self.__plog = plog.name
-        self.__staging = staging.name
-        self.__slog = slog.name
-
     def __compare_log(self):
         def sorted_str(string):
             pattern = r"(?<=\[)[^[\]]+(?=\])|(?<={)[^{}]+(?=})|(?<=\()[^()]+(?=\))"
@@ -178,13 +158,6 @@ class FlatmapCompare:
                 writer.writerow(line)
 
     def save_and_close(self):
-        # close and remove temporary file
-        if self.__tmp_data != None:
-            for tmp in self.__tmp_data:
-                if isinstance(tmp, TemporaryDirectory):
-                    tmp.cleanup()
-                else:
-                    tmp.close()
         # save report to an appropriate format
         report_type = self.__report_file.split('.')[-1]
         if report_type == 'xlsx':
@@ -199,8 +172,6 @@ class FlatmapCompare:
 
 def main():
     parser = argparse.ArgumentParser(description='Generate a flatmap from its source manifest.')
-    parser.add_argument('--source',
-                        help='URL or path of a flatmap manifest')
     parser.add_argument('--production',
                         help='URL or path to flatmap with production SCKAN')
     parser.add_argument('--plog',
