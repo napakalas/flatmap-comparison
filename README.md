@@ -33,10 +33,10 @@ Instruction
      * --slog'      : URL or path to flatmap log with staging SCKAN'
      * --output'    : a file path and name to store comparison results (xlsx, json, csv)
    * example
-
+   
      ```
-    poetry run python fcompare.py --production ../production/human-flatmap_male \
+        poetry run python fcompare.py --production ../production/human-flatmap_male \
         --plog ../flatmaps/production/male.log \
-        --staging ../flatmaps/staging/human-flatmap_male 
+        --staging ../flatmaps/staging/human-flatmap_male \
         --slog ../flatmaps/staging/male.log --output ../resuls/male.csv
      ```
