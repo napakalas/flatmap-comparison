@@ -160,7 +160,13 @@ cython_debug/
 #.idea/
 
 flatmap-maker*
-flatmaps/*
-losgs/*
+flatmaps/production/*
+flatmaps/staging/*
+sources/*
+logs/*
+results/*
+mapmaker/*
 
 .DS_Store
+
+!.gitkeep
