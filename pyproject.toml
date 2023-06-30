@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fcompare"
-version = "1.6.5-b.2"
+version = "0.0.1"
 description = ""
 authors = ["Yuda Munarko <yuda.munarko@auckland.ac.nz>"]
 
